@@ -15,6 +15,7 @@ export interface User {
   email_verified_at?: unknown;
   created_at?: Date;
   updated_at?: Date;
+  test?: string;
 }
 
 export interface RegistrationData {
