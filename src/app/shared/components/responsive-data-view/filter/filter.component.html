@@ -1,0 +1,51 @@
+<div
+  class="w-full rounded my-5 border"
+  [ngClass]="{ 'border-transparent': !isExpanded() }"
+>
+  <div class="w-full flex justify-end px-3 pt-2">
+    <button
+      *transloco="let t"
+      class="text-left flex group items-center gap-x-2 text-surface-700 hover:text-surface-900 font-primeng font-medium px-2 py-1 rounded-primeng transition-all duration-300"
+      (click)="isExpanded.set(!isExpanded())"
+    >
+      {{ t("filter") }}
+
+      <div
+        class="p-1 group-hover:shadow-sm group-hover:bg-surface-0 border border-surface rounded-primeng transition-all duration-200"
+        routerLinkActive="bg-surface-0"
+      >
+        <i
+          class="pi"
+          [ngClass]="isExpanded() ? 'pi-angle-up' : 'pi-angle-down'"
+          style="font-size: 2rem"
+        ></i>
+      </div>
+    </button>
+  </div>
+  @if (isExpanded()) {
+    <div class="grid md:grid-cols-3 grid-cols-1 gap-x-8 gap-y-4 px-5">
+      <ng-content></ng-content>
+    </div>
+
+    @if (showButtons()) {
+      <div
+        class="w-full px-3 flex items-center flex-col-reverse sm:flex-row justify-end gap-2 sm:gap-5 pb-3 py-8"
+      >
+        <button
+          *transloco="let t"
+          class="p-ripple flex justify-center items-center sm:w-fit w-full font-primeng p-element p-button p-component p-button-secondary p-button-text"
+          (click)="clearClicked.emit()"
+        >
+          {{ t("clear") }}
+        </button>
+        <button
+          *transloco="let t"
+          class="p-button sm:w-fit w-full justify-center font-primeng"
+          (click)="filterClicked.emit()"
+        >
+          {{ t("filter") }}
+        </button>
+      </div>
+    }
+  }
+</div>

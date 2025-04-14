@@ -1,0 +1,15 @@
+<div
+  class="w-full h-full flex flex-col justify-start space-y-3"
+  *transloco="let t"
+>
+  @for (navigationItem of navigation(); track navigationItem.title) {
+    <button
+      (click)="navigationClicked.emit()"
+      class="text-left flex group items-center gap-x-2 hover:bg-emphasis px-2 py-1 rounded-primeng transition-all duration-300"
+      [routerLink]="['/', navigationItem.path]"
+      routerLinkActive="bg-emphasis"
+    >
+      {{ t(navigationItem.title) }}
+    </button>
+  }
+</div>

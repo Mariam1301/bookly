@@ -1,0 +1,64 @@
+<main
+  class="flex flex-col justify-center items-center min-w-screen min-h-screen p-10"
+  *transloco="let t"
+>
+  <section>
+    <header>
+      <h1 class="text-4xl text-center text-black">
+        {{ t("welcomeToPayroll") }}
+      </h1>
+      <p class="text-lg mt-5 text-center text-gray-400">
+        {{ t("loginToContinue") }}
+      </p>
+    </header>
+  </section>
+  <form
+    #form="ngForm"
+    autocomplete="off"
+    class="flex lg:w-1/3 sm:w-1/2 w-full flex-col justify-center items-center gap-4 mt-16"
+  >
+    <ui-form-field class="w-full" [label]="t('email')">
+      <input
+        required
+        email
+        pInputText
+        name="email"
+        autocomplete="email"
+        class="w-full"
+        autocomplete="new-password"
+        [(ngModel)]="loginData().email"
+        (ngModelChange)="onFormChange()"
+      />
+    </ui-form-field>
+    <ui-form-field [label]="t('password')" class="w-full">
+      <input
+        required
+        pInputText
+        name="password"
+        type="password"
+        class="w-full"
+        [(ngModel)]="loginData().password"
+        (ngModelChange)="onFormChange()"
+      />
+    </ui-form-field>
+    @if(showInvalidCredentialsError()){
+    <small class="text-invalid">{{ t("emailOrPasswordNotValid") }}</small
+    >}
+    <button
+      pButton
+      [disabled]="form.invalid"
+      [classList]="'w-full'"
+      [label]="t('signIn')"
+      (click)="onLogin()"
+    ></button>
+  </form>
+  <hr class="w-1/4 my-6" />
+  <section>
+    <p class="text-sm text-center flex items-center gap-1 text-gray-400">
+      <span>{{ t("noAccount") }}, </span>
+      <button class="text-link" [routerLink]="['../signUp']">
+        {{ t("createAccount") }}
+      </button>
+    </p>
+  </section>
+</main>

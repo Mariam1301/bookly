@@ -1,0 +1,108 @@
+<div
+  class="flex sm:items-center justify-between flex-col sm:flex-row items-start mb-8"
+>
+  @if (title()) {
+    <h1 class="font-primeng font-semibold text-xl mb-5 sm:mb-0">
+      {{ title() }}
+    </h1>
+  }
+  @if (showAddButton()) {
+    <button
+      class="p-button w-full sm:w-fit justify-center flex gap-2 items-center"
+      (click)="addButtonClicked.emit()"
+    >
+      <i class="pi pi-plus" style="font-size: 1rem"></i>
+      <p *transloco="let t">{{ addButtonLabel() || t("add") }}</p>
+    </button>
+  }
+</div>
+
+@if (filterTemplate()) {
+  <data-view-filter
+    [showButtons]="true"
+    (filterClicked)="onFilterClick()"
+    (clearClicked)="onClearClick()"
+  >
+    <ng-container *ngTemplateOutlet="filterTemplate()"></ng-container>
+  </data-view-filter>
+}
+@if (noteTemplate()) {
+  <div class="w-full px-3 sm:border-b-0 py-5 border-dashed border">
+    <ng-container *ngTemplateOutlet="noteTemplate()"></ng-container>
+  </div>
+}
+
+@if (isLoading() && loaderId()) {
+  <div class="hidden sm:block">
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+    <p-skeleton height="2rem" styleClass="mb-2" />
+  </div>
+
+  <div class="sm:hidden">
+    <p-skeleton width="100%" height="10rem" styleClass="mb-4" />
+    <p-skeleton width="100%" height="10rem" styleClass="mb-4" />
+    <p-skeleton width="100%" height="10rem" styleClass="mb-4" />
+  </div>
+} @else {
+  @if ((data()?.length || 0) > 0 || (dataSource()?.data?.length || 0) > 0) {
+    @if (!!selectedColumns().length || !areColumnsSelectable()) {
+      <div class="hidden sm:block">
+        <ui-table
+          [data]="data() || dataSource()?.data || []"
+          [columnList]="
+            (areColumnsSelectable() ? filteredColumnList() : columnList()) || []
+          "
+          [disabled]="!clickable()"
+          [showDeleteButton]="showDeleteButton()"
+          (deleteClicked)="onDeleteClick($event)"
+          (rowClicked)="rowClicked.emit($event)"
+        ></ui-table>
+      </div>
+
+      <div class="sm:hidden">
+        <ui-list
+          [data]="data() || dataSource()?.data || []"
+          [columnList]="
+            (areColumnsSelectable() ? filteredColumnList() : columnList()) || []
+          "
+          [disabled]="!clickable()"
+          [showDeleteButton]="showDeleteButton()"
+          (deleteClicked)="onDeleteClick($event)"
+          (rowClicked)="rowClicked.emit($event)"
+        ></ui-list>
+      </div>
+    }
+
+    @if (!selectedColumns().length && !!areColumnsSelectable()) {
+      <p
+        *transloco="let t"
+        class="w-full text-center font-primeng py-5 text-surface-400"
+      >
+        {{ t("toSeeDataPleaseSelectFields") }}
+      </p>
+    }
+  } @else {
+    <p
+      *transloco="let t"
+      class="w-full text-center font-primeng py-5 text-surface-400"
+    >
+      {{ t("noRecord") }}
+    </p>
+  }
+}
+@if (hasPagination()) {
+  <div class="hidden sm:block">
+    <ui-paginator [dataSource]="dataSource()"></ui-paginator>
+  </div>
+  <div class="sm:hidden">
+    <ui-load-more-button [dataSource]="dataSource()"></ui-load-more-button>
+  </div>
+}

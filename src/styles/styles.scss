@@ -1,0 +1,77 @@
+@import "primeicons/primeicons.css";
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+tr.clickable {
+  @apply hover:bg-emphasis cursor-pointer duration-300 transition-all;
+}
+th {
+  @apply cursor-default;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.p-datepicker,
+.p-select {
+  @apply w-full max-w-full;
+}
+
+@media (max-width: 640px) {
+  .p-toast {
+    max-width: 90vw;
+    word-wrap: break-word;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
+}
+
+.p-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.p-hidden-accessible input,
+.p-hidden-accessible select {
+  transform: scale(0);
+}
+.p-password {
+  width: 100%;
+}
+.p-password-input {
+  width: 100%;
+}
+
+.p-inputnumber {
+  width: 100%;
+}
+.p-inputwrapper {
+  width: 100%;
+}
+
+.p-inputnumber-input {
+  width: 100%;
+}
+.p-inputtext {
+  width: 100%;
+}

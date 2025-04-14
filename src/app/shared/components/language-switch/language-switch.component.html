@@ -1,0 +1,6 @@
+<p-selectButton
+  [classList]="['border']"
+  [options]="languageOptions()"
+  [ngModel]="currentLang()"
+  (ngModelChange)="switchLang($event)"
+/>

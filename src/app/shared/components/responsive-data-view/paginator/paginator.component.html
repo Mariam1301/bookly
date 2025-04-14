@@ -1,0 +1,7 @@
+<p-paginator
+  (onPageChange)="onPageChange($event)"
+  [first]="first()"
+  [rows]="dataSource().pageSize"
+  [totalRecords]="dataSource().totalCount"
+  [alwaysShow]="false"
+/>

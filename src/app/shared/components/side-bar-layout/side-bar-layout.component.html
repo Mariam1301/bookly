@@ -1,0 +1,51 @@
+<div class="w-full flex gap-x-5">
+  <!-- <p-button
+    severity="secondary"
+    class="sm:hidden"
+    icon=" pi pi-sliders-h"
+    (onClick)="toggleDrawer()"
+  /> -->
+
+  <div
+    class="invisible sm:visible max-h-full h-[90vh] overflow-y-scroll"
+    [ngClass]="{ 'w-1/5 border-r': isSidebarOpen() }"
+  >
+    @if (isSidebarOpen()) {
+      <div class="w-full">
+        <div class="flex items-center justify-between px-3">
+          <p class="text-lg font-bold">
+            {{ label() }}
+          </p>
+          <p-button
+            severity="secondary"
+            [icon]="
+              ' pi ' + (isSidebarOpen() ? ' pi-angle-left ' : ' pi-sliders-h ')
+            "
+            (onClick)="toggle()"
+          />
+        </div>
+        <ng-content select="side-panel"></ng-content>
+      </div>
+    } @else {
+      <div class="max-h-full px-2 h-[90vh]">
+        <p-button
+          severity="secondary"
+          icon="pi pi-sliders-h"
+          (onClick)="toggle()"
+        />
+      </div>
+    }
+  </div>
+
+  <div [ngClass]="[isSidebarOpen() ? 'w-4/5' : 'w-full']">
+    <ng-content></ng-content>
+  </div>
+</div>
+<!-- <div class="sm:invisible">
+  <p-drawer [(visible)]="isDrawerOpen">
+    <p class="text-lg font-bold">
+      {{ label() }}
+    </p>
+    <ng-content select="side-panel"></ng-content>
+  </p-drawer>
+</div> -->

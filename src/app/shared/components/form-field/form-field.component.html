@@ -1,0 +1,20 @@
+<div>
+  @if (label) {
+    <label
+      class="mb-1 text-sm block w-fit pr-4"
+      [ngClass]="{ 'text-red-600': errorMessage || displayError() }"
+      [pTooltip]="tootipText()"
+    >
+      {{ label }}<span *ngIf="isRequired()" class=""> *</span>
+    </label>
+  }
+  <div>
+    <ng-content></ng-content>
+  </div>
+
+  <div class="h-3">
+    <span class="text-red-600 text-xs leading-none">
+      {{ errorMessage || displayError() }}
+    </span>
+  </div>
+</div>

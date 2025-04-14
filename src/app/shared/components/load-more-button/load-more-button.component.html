@@ -1,0 +1,12 @@
+@if(((dataSource().pageNumber)*dataSource().pageSize)<=dataSource().totalCount){
+<div class="w-full flex items-center justify-center">
+  <p-button
+    label="მაჩვენე მეტი"
+    severity="secondary"
+    [text]="true"
+    [outlined]="true"
+    (click)="onShowMoreClick()"
+  >
+  </p-button>
+</div>
+}

@@ -1,0 +1,57 @@
+<div class="border border-surface-200" *transloco="let t">
+  <p-table
+    [value]="data()"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowHover]="!disabled()"
+    [columns]="columnList() || []"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        @for (column of columns; track column?.name) {
+          <th class="font-primeng">{{ t(column?.name || "") }}</th>
+        }
+        @if (showDeleteButton()) {
+          <th></th>
+        }
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-row
+      let-i="rowIndex"
+      let-columns="columns"
+    >
+      <tr
+        [ngClass]="{ clickable: !disabled() }"
+        (click)="!disabled() && rowClicked.emit({ index: i, dataItem: row })"
+      >
+        @for (column of columns; track column?.name) {
+          <td>
+            @if (column.templateRef) {
+              <ng-container
+                *ngTemplateOutlet="
+                  column.templateRef;
+                  context: { $implicit: row }
+                "
+              ></ng-container>
+            } @else {
+              <p>{{ row[column.valueField] || "" }}</p>
+            }
+          </td>
+        }
+        @if (showDeleteButton()) {
+          <td>
+            <button
+              *transloco="let t"
+              uiConfirm
+              class="py-0.5 px-3 rounded"
+              (confirm)="deleteClicked.emit({ dataItem: row, index: i })"
+            >
+              <i class="pi pi-trash" style="font-size: 1rem"></i>
+            </button>
+          </td>
+        }
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
