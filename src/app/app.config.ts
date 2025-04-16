@@ -22,7 +22,6 @@ import { providePrimeNG } from 'primeng/config';
 import { Noir } from '../styles/primeng-presets';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { environment } from '../environments/environments';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -60,7 +59,6 @@ export const appConfig: ApplicationConfig = {
     provideStore({ user: userReducer }),
     provideEffects(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideStorage(() => getStorage()),
   ],
 };
