@@ -1,0 +1,9 @@
+<app-image-upload-view
+  [(urls)]="urls"
+  [errors]="errors()"
+  [isLoading]="isLoading()"
+  [maxImages]="maxImages()"
+  (filesSelected)="onFilesSelected($event)"
+  (urlsChange)="onUrlsChanged()"
+  (retryImage)="compressAndReupload($event.file, $event.index)"
+></app-image-upload-view>

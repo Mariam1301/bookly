@@ -22,10 +22,10 @@ export class WrapperComponent {
   isMenuOpen = signal(false);
 
   navigationArray: NavigationModel[] = [
-    // {
-    //   title: 'company',
-    //   path: 'company',
-    // },
+    {
+      title: 'services',
+      path: 'services',
+    },
   ];
 
   toggleIsMenuOpen() {

@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,ts,scss}", "./node_modules/primeng/**/*.js"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "button-secondary-background": "var(--p-button-secondary-background)",
+      },
+    },
   },
   plugins: [require("tailwindcss-primeui")],
 };

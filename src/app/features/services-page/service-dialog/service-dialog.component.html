@@ -1,0 +1,71 @@
+<form
+  #form="ngForm"
+  class="flex flex-col gap-4"
+  autocomplete="off"
+  *transloco="let t"
+>
+  <ui-form-field class="w-full" [label]="t('name')">
+    <input
+      required
+      pInputText
+      name="name"
+      class="w-full"
+      [(ngModel)]="data().name"
+    />
+  </ui-form-field>
+  <ui-form-field class="w-full" [label]="t('description')">
+    <textarea
+      pTextarea
+      name="description"
+      rows="5"
+      cols="30"
+      class="resize-none w-full"
+      [(ngModel)]="data().description"
+    ></textarea>
+  </ui-form-field>
+  <ui-form-field class="w-full" [label]="t('duration')">
+    <p-inputnumber
+      required
+      name="duration"
+      buttonLayout="horizontal"
+      inputId="duration"
+      spinnerMode="horizontal"
+      [min]="0"
+      [suffix]="' ' + t('min')"
+      [step]="15"
+      [(ngModel)]="data().duration"
+      [showButtons]="true"
+    >
+      <ng-template #incrementbuttonicon>
+        <span class="pi pi-plus"></span>
+      </ng-template>
+      <ng-template #decrementbuttonicon>
+        <span class="pi pi-minus"></span>
+      </ng-template>
+    </p-inputnumber>
+  </ui-form-field>
+  <ui-form-field class="w-full" [label]="t('price')">
+    <input
+      required
+      pInputText
+      type="number"
+      name="price"
+      class="w-full"
+      [(ngModel)]="data()!.price"
+    />
+  </ui-form-field>
+
+  <ui-form-field class="w-full" [label]="t('images')">
+    <image-upload
+      [maxImages]="3"
+      name="images"
+      [(ngModel)]="data().images"
+    ></image-upload
+  ></ui-form-field>
+
+  <ui-dialog-actions
+    [showCancel]="true"
+    [disabled]="!!form.invalid"
+    (saveClicked)="onSaveClick()"
+  ></ui-dialog-actions>
+</form>

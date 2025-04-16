@@ -1,3 +1,22 @@
 {
-  "name": "Name"
+  "name": "Name",
+  "upload": "Upload",
+  "compressAndReupload": "Compress and Reupload",
+  "failedToUpload": "Failed to upload {{file}}",
+  "compressionFailed": "Compression failed",
+  "maxImageCountError": {
+    "one": "You can only upload up to {{maxImageCount}} image",
+    "other": "You can only upload up to {{maxImageCount}} images"
+  },
+  "fileSizeLimitExceededError": "File size({{uploadedFileSize}}) exceeds limit({{fileSize}})",
+  "imageFileTypeError": "Only image files are allowed. Please upload a valid image file.",
+  "services": "Services",
+  "service": "Service",
+  "description": "Description",
+  "price": "Price",
+  "duration": "Duration",
+  "add": "Add",
+  "save": "Save",
+  "cancel": "Cancel",
+  "images": "Images"
 }

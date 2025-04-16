@@ -1,0 +1,19 @@
+<ng-container *transloco="let t">
+  <ui-responsive-data-view
+    [title]="t('services')"
+    [data]="data()"
+    [showAddButton]="true"
+    [showDeleteButton]="true"
+    (addButtonClicked)="onAddClick()"
+    (rowClicked)="onRowClick($event)"
+    (deleteClicked)="onDeleteClick($event)"
+  >
+    <ui-data-element name="name" valueField="name"></ui-data-element>
+    <ui-data-element
+      name="description"
+      valueField="description"
+    ></ui-data-element>
+    <ui-data-element name="price" valueField="price"> </ui-data-element>
+    <ui-data-element name="duration" valueField="duration"> </ui-data-element>
+  </ui-responsive-data-view>
+</ng-container>

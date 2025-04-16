@@ -1,3 +1,19 @@
 {
-  "name": "სახელი"
+  "name": "სახელი",
+  "upload": "ატვირთვა",
+  "compressAndReupload": "შეამცირე ზომა",
+  "failedToUpload": "{{file}} ფაილის ატვირთვა ვერ მოხერხდა",
+  "compressionFailed": "ზომის შემცირება წარუმატებელია",
+  "maxImageCountError": "შეგიძლიათ ატვირთოთ მაქსიმუმ {{maxImageCount}} სურათი",
+  "fileSizeLimitExceededError": "ფაილის ზომა ({{uploadedFileSize}}) აჭარბებს ზღვარს ({{fileSize}})",
+  "imageFileTypeError": "მხოლოდ სურათის ფაილებია ნებადართული. გთხოვთ ატვირთოთ სწორი სურათის ფაილი.",
+  "services": "სერვისები",
+  "service": "სერვისი",
+  "description": "აღწერა",
+  "price": "ფასი",
+  "duration": "ხანგრძლივობა",
+  "add": "დამატება",
+  "save": "შენახვა",
+  "cancel": "გაუქმება",
+  "images": "სურათები"
 }

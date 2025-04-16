@@ -6,17 +6,17 @@ export const authorizedRoutes: Routes = [
     path: '',
     component: WrapperComponent,
     children: [
-      // {
-      //   path: 'company',
-      //   loadComponent: () =>
-      //     import(
-      //       '../company-page/company-details/company-details.component'
-      //     ).then((m) => m.CompanyDetailsComponent),
-      // },
+      {
+        path: 'services',
+        loadComponent: () =>
+          import('../services-page/services-page.component').then(
+            (m) => m.ServicesPageComponent
+          ),
+      },
 
       {
         path: '**',
-        redirectTo: 'company',
+        redirectTo: 'services',
       },
     ],
   },

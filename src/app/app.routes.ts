@@ -8,12 +8,12 @@ export const routes: Routes = [
   {
     path: 'auth',
     children: unauthorizedRoutes,
-    canActivate: [nonAuthenticatedMatchGuard],
+    // canActivate: [nonAuthenticatedMatchGuard],
   },
   {
     path: '',
     children: authorizedRoutes,
-    canActivate: [authMatchGuard],
+    // canActivate: [authMatchGuard],
   },
 
   {

@@ -1,0 +1,66 @@
+<div class="flex flex-col gap-4 w-full" *transloco="let t">
+  <input
+    hidden
+    type="file"
+    (change)="onFileSelected($event)"
+    accept="image/*"
+    multiple
+    [max]="3"
+    class="file-input file-input-bordered w-full max-w-md"
+    [disabled]="isLoading()"
+    #fileInput
+  />
+  <div class="flex flex-wrap gap-4">
+    @if((urls()||[]).length< maxImages()){
+    <button
+      class="w-24 h-24 bg-button-secondary-background border rounded"
+      (click)="fileInput.click()"
+      type="button"
+    >
+      @if(isLoading()){
+      <i class="pi pi-spin pi-spinner"></i>
+      }@else { <i class="pi pi-image"></i>
+      <p>{{ t("upload") }}</p>
+      }</button
+    >} @for(url of urls(); let i = $index; track $index){
+    <div
+      class="relative w-24 h-24 rounded overflow-hidden border border-gray-300"
+    >
+      <p-image
+        [src]="url"
+        alt="Image preview"
+        [imageStyle]="{ 'object-fit':
+        'cover', 'object-position': 'center', width: '94px', height: '94px', }"
+        [preview]="true"
+      />
+
+      <button
+        type="button"
+        (click)="onRemoveImage(i)"
+        class="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600"
+        [title]="t('removeImage')"
+      >
+        <i class="pi pi-times text-xs"></i>
+      </button>
+    </div>
+    }
+  </div>
+  @if(errors()?.length){
+  <div class="text-red-600 text-sm">
+    @for(error of errors(); let i = $index; track $index){
+    <div>
+      {{ error.message }}
+      @if(error.type === errorTypes.FILE_SIZE){
+      <p-button
+        [label]="t('compressAndReupload')"
+        class="my-2"
+        severity="success"
+        (onClick)="onRetryImage(error.data.file, i)"
+      />
+
+      }
+    </div>
+    }
+  </div>
+  }
+</div>
