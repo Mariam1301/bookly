@@ -26,6 +26,10 @@ export class WrapperComponent {
       title: 'services',
       path: 'services',
     },
+    {
+      title: 'specialist',
+      path: 'specialist',
+    },
   ];
 
   toggleIsMenuOpen() {

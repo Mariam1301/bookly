@@ -1,0 +1,28 @@
+<ng-container *transloco="let t">
+  <ui-responsive-data-view
+    [title]="t('specialists')"
+    [data]="data()"
+    [showAddButton]="true"
+    [showDeleteButton]="true"
+    (addButtonClicked)="onAddClick()"
+    (rowClicked)="onRowClick($event)"
+    (deleteClicked)="onDeleteClick($event)"
+  >
+    <ui-data-element name="specialist">
+      <ng-template uiTemplate let-row>
+        <p>{{ row.name + " " + row.surname }}</p>
+      </ng-template>
+    </ui-data-element>
+    <ui-data-element
+      name="experience"
+      valueField="experience"
+    ></ui-data-element>
+    <ui-data-element name="services">
+      <ng-template uiTemplate let-row>
+        @for(service of row.services; track $index) {
+        <p>{{ service.name }}</p>
+        }
+      </ng-template>
+    </ui-data-element>
+  </ui-responsive-data-view>
+</ng-container>

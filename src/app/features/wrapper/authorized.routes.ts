@@ -13,6 +13,13 @@ export const authorizedRoutes: Routes = [
             (m) => m.ServicesPageComponent
           ),
       },
+      {
+        path: 'specialist',
+        loadComponent: () =>
+          import('../specialist-page/specialist-page.component').then(
+            (m) => m.SpecialistPageComponent
+          ),
+      },
 
       {
         path: '**',

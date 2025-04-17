@@ -1,0 +1,139 @@
+<form
+  #form="ngForm"
+  class="flex flex-col gap-4"
+  autocomplete="off"
+  *transloco="let t"
+>
+  <ui-form-field class="w-full" [label]="t('image')">
+    <image-upload
+      [maxImages]="1"
+      name="image"
+      [(ngModel)]="data().image"
+    ></image-upload
+  ></ui-form-field>
+  <ui-form-field class="w-full" [label]="t('name')">
+    <input
+      required
+      pInputText
+      name="name"
+      class="w-full"
+      [(ngModel)]="data().name"
+    />
+  </ui-form-field>
+  <ui-form-field class="w-full" [label]="t('lastName')">
+    <input
+      required
+      pInputText
+      name="name"
+      class="w-full"
+      [(ngModel)]="data().surname"
+    />
+  </ui-form-field>
+
+  <ui-form-field class="w-full" [label]="t('yearsOfExperience')">
+    <p-inputNumber
+      type="number"
+      name="experience"
+      [inputId]="t('yearsOfExperience')"
+      [min]="0"
+      [(ngModel)]="data()!.experience"
+    />
+  </ui-form-field>
+  <ui-form-field class="w-full" [label]="t('services')">
+    <p-multiSelect
+      required
+      name="services"
+      appendTo="body"
+      optionLabel="label"
+      optionValue="id"
+      [placeholder]="t('selectServices')"
+      [options]="services"
+      display="chip"
+      [(ngModel)]="data()!.services"
+    >
+    </p-multiSelect>
+  </ui-form-field>
+
+  <p class="text-lg font-semibold mt-5">{{ t("workingSchedule") }}</p>
+  <ui-form-field class="w-full" [label]="t('workingDays')">
+    <p-multiSelect
+      name="workingDays"
+      appendTo="body"
+      optionLabel="label"
+      [showHeader]="false"
+      optionValue="id"
+      [placeholder]="t('selectWorkingDays')"
+      [options]="weekdays"
+      display="chip"
+      [(ngModel)]="data()!.days"
+    >
+    </p-multiSelect>
+  </ui-form-field>
+
+  <div class="flex w-full items-center gap-4">
+    <ui-form-field class="w-full" [label]="t('start')">
+      <p-select
+        appendTo="body"
+        name="start"
+        optionLabel="name"
+        optionValue="id"
+        [placeholder]="t('selectStartTime')"
+        [showClear]="true"
+        [options]="time"
+        [(ngModel)]="data().start_time"
+      />
+    </ui-form-field>
+    <ui-form-field class="w-full" [label]="t('finish')">
+      <p-select
+        appendTo="body"
+        name="end"
+        optionLabel="name"
+        optionValue="id"
+        [placeholder]="t('selectFinishTime')"
+        [showClear]="true"
+        [options]="time"
+        [(ngModel)]="data().finish_time"
+      />
+    </ui-form-field>
+  </div>
+  <div class="flex w-full items-center gap-4">
+    <ui-form-field class="w-full" [label]="t('breakTime')">
+      <p-select
+        appendTo="body"
+        name="breakTime"
+        optionLabel="name"
+        optionValue="id"
+        [placeholder]="t('selectBreakTime')"
+        [options]="time"
+        [showClear]="true"
+        [(ngModel)]="data().break_time"
+      />
+    </ui-form-field>
+    <ui-form-field class="w-full" [label]="t('breakDuration')">
+      <p-inputnumber
+        name="breakDuration"
+        buttonLayout="horizontal"
+        inputId="duration"
+        spinnerMode="horizontal"
+        [min]="0"
+        [suffix]="' ' + t('min')"
+        [step]="15"
+        [(ngModel)]="data().break_duration"
+        [showButtons]="true"
+      >
+        <ng-template #incrementbuttonicon>
+          <span class="pi pi-plus"></span>
+        </ng-template>
+        <ng-template #decrementbuttonicon>
+          <span class="pi pi-minus"></span>
+        </ng-template>
+      </p-inputnumber>
+    </ui-form-field>
+  </div>
+
+  <ui-dialog-actions
+    [showCancel]="true"
+    [disabled]="!!form.invalid"
+    (saveClicked)="onSaveClick()"
+  ></ui-dialog-actions>
+</form>

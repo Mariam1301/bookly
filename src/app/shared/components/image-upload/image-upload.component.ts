@@ -78,13 +78,13 @@ export class ImageUploadComponent implements ControlValueAccessor {
         break;
       }
 
-      if (fileSizeError) {
-        this.errors.update((prev) => [...prev, fileSizeError]);
+      if (fileTypeError) {
+        this.errors.update((prev) => [...prev, fileTypeError]);
         continue;
       }
 
-      if (fileTypeError) {
-        this.errors.update((prev) => [...prev, fileTypeError]);
+      if (fileSizeError) {
+        this.errors.update((prev) => [...prev, fileSizeError]);
         continue;
       }
 
